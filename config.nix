@@ -16,9 +16,9 @@
     sh
     */
     ''
-         ${readFile ./tmux.conf}
+      ${readFile ./tmux.conf}
       ${readFile ./lackluster.tmux}
-         bind -n C-f run-shell "tmux neww ${getExe sessioniser}"
+      bind -n C-f run-shell "tmux neww ${getExe sessioniser}"
     '';
 
   sessioniser = import ./sessioniser.nix {

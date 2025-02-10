@@ -36,7 +36,6 @@
     # {plugin = inputs.minimal-tmux.packages.${pkgs.system}.default;}
   ];
 in
-  builtins.trace "Config is\n${extra-config}"
   mkTmuxConfig {
     inherit pkgs plugins extra-config;
   }

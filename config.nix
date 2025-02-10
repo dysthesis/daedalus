@@ -29,7 +29,6 @@
     ];
   };
   plugins = with pkgs.tmuxPlugins; [
-    rose-pine
     vim-tmux-navigator
     sensible
     yank

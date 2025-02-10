@@ -12,6 +12,12 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Minimal theme
+    minimal-tmux = {
+      url = "github:niksingh710/minimal-tmux-status";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -20,7 +26,7 @@
     nixpkgs,
     treefmt-nix,
     ...
-  }: let
+  } @ inputs: let
     inherit (builtins) mapAttrs;
     inherit (babel) mkLib;
     lib = mkLib nixpkgs;
@@ -45,6 +51,6 @@
       checks = pkgs: {
         formatting = treefmt.${pkgs.system}.config.build.check self;
       };
-      packages = pkgs: import ./nix/packages {inherit pkgs lib;};
+      packages = pkgs: import ./nix/packages {inherit pkgs lib inputs;};
     };
 }

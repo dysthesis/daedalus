@@ -1,9 +1,10 @@
 {
+  inputs,
   lib,
   pkgs,
   ...
 }: let
-  config = import ../../config.nix {inherit lib pkgs;};
+  config = import ../../config.nix {inherit lib pkgs inputs;};
 in rec {
   default = daedalus;
   daedalus = pkgs.tmux.overrideAttrs (prev: {

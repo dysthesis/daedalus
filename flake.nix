@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "A flake of creation.";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -13,6 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
   outputs = {
     self,
     babel,

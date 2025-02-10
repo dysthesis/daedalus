@@ -23,15 +23,16 @@ set-option -g status-style "bg=default,fg=default"
 set-option -g status-justify "centre"
 
 # Indicator for prefix - using direct color values
-set-option -g status-left "#[fg=$color_luster] tmux "
+set -g status-left-length 30 # could be any number
+set-option -g status-left "#[fg=$color_orange]󰒋 #[fg=default,bg=default]#H #[fg=$color_blue] #[fg=default,bg=default]#(whoami)"
 
 # Session name on the right
-set-option -g status-right "#[fg=$color_green]#S"
+set-option -g status-right "#[fg=$color_green]   #[fg=default,bg=default]#S"
 
 # Window status format
 set-option -g window-status-format "#[bg=$color_gray2,fg=$color_lack] #I: #W "
 
 # Current window status format with arrows
-set-option -g window-status-current-format "#[fg=$color_gray2]#[bg=$color_lack,fg=$color_gray2,bold] #I: #W #{?window_zoomed_flag,󰊓 ,}#[fg=$color_gray2,bg=default]"
+set-option -g window-status-current-format "#[fg=$color_gray2]#[bg=$color_lack,fg=$color_gray2,bold]  #W #{?window_zoomed_flag,󰊓 ,}#[fg=$color_gray2,bg=default]"
 
 # Rest of the settings remain the same...

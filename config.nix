@@ -17,7 +17,7 @@
     ''
       ${readFile ./tmux.conf}
       ${readFile ./lackluster.tmux}
-      bind -n C-f display-popup -E -w 75% -h 75% -b rounded "tmux neww ${getExe sessioniser}"
+      bind -n C-f run-shell "tmux neww ${getExe sessioniser}"
     '';
 
   sessioniser = import ./sessioniser.nix {

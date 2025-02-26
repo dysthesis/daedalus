@@ -20,6 +20,7 @@ in rec {
         mv $out/bin/tmux $out/libexec/tmux-unwrapped
         makeWrapper $out/libexec/tmux-unwrapped $out/bin/tmux \
         	--add-flags "-f ${config}"
+          --set TERM "screen-256color"
       '';
   });
 }

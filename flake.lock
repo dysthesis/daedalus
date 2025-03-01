@@ -8,11 +8,11 @@
         "treefmt": "treefmt"
       },
       "locked": {
-        "lastModified": 1739488840,
-        "narHash": "sha256-Si3yMyG27VyUI6ImYYpGaDqksqF2Ae7taMIlKy+IUw0=",
+        "lastModified": 1740620918,
+        "narHash": "sha256-WA/ayH5nxIqNe3ImL9NOi0d7kl892PoLXqu1/2Ig58s=",
         "owner": "dysthesis",
         "repo": "babel",
-        "rev": "17cd5104120ec4252d5508f544a2701d18281f99",
+        "rev": "1a4db1717fa4c1768f7e67ea3f8d1dcfa70dd7d0",
         "type": "github"
       },
       "original": {
@@ -43,11 +43,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1739736696,
-        "narHash": "sha256-zON2GNBkzsIyALlOCFiEBcIjI4w38GYOb+P+R4S8Jsw=",
+        "lastModified": 1740695751,
+        "narHash": "sha256-D+R+kFxy1KsheiIzkkx/6L63wEHBYX21OIwlFV8JvDs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d74a2335ac9c133d6bbec9fc98d91a77f1604c1f",
+        "rev": "6313551cd05425cd5b3e63fe47dbc324eabb15e4",
         "type": "github"
       },
       "original": {

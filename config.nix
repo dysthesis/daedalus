@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  shell ? "bash",
   ...
 }: let
   inherit (lib.babel.tmux) mkTmuxConfig;
@@ -22,6 +23,7 @@
       bind -T popup M-a detach
       # This lets us do scrollback and search within the popup
       bind -T popup C-[ copy-mode
+      set-option -g default-shell ${shell}
     '';
 
   sessioniser = import ./sessioniser.nix {

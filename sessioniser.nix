@@ -27,7 +27,7 @@ in
     							--max-depth ${toString depth} \
     							--exclude Archives \
     							. ${directories} \
-    							| ${getExe fzf})
+    							| ${getExe fzf} --tmux center)
     fi
 
     if [ -z "$selected" ]; then

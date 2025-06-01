@@ -6,10 +6,10 @@
 }: let
   mkTmux = {
     shell ? "bash",
-    tmux ? pkgs.tmux,
+    fzf ? pkgs.fzf,
     ...
   }: let
-    config = shell: import ../../config.nix {inherit lib pkgs inputs shell tmux;};
+    config = shell: import ../../config.nix {inherit lib pkgs inputs shell fzf;};
   in
     pkgs.tmux.overrideAttrs (prev: {
       buildInputs = (prev.buildInputs or []) ++ [pkgs.makeWrapper];

@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  fzf ? pkgs.fzf,
   # How deep to search the directories
   depth ? 1,
   # Where to search in
@@ -26,7 +27,7 @@ in
     							--max-depth ${toString depth} \
     							--exclude Archives \
     							. ${directories} \
-    							| ${getExe pkgs.fzf})
+    							| ${getExe fzf})
     fi
 
     if [ -z "$selected" ]; then

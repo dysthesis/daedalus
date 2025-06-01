@@ -2,6 +2,7 @@
   pkgs,
   lib,
   shell ? "bash",
+  fzf ? pkgs.fzf,
   ...
 }: let
   inherit (lib.babel.tmux) mkTmuxConfig;
@@ -27,7 +28,7 @@
     '';
 
   sessioniser = import ./sessioniser.nix {
-    inherit lib pkgs;
+    inherit lib pkgs fzf;
     targets = [
       "~/Documents/University"
       "~/Documents/Projects"

@@ -27,7 +27,7 @@ in
     							--max-depth ${toString depth} \
     							--exclude Archives \
     							. ${directories} \
-    							| ${getExe fzf} --tmux center --header "Sessioniser")
+    							| ${fzf}/bin/fzf --tmux center --header "Sessioniser")
     fi
 
     if [ -z "$selected" ]; then

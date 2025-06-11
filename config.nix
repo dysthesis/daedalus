@@ -21,7 +21,9 @@
       ${readFile ./lackluster.tmux}
       bind -n C-f run-shell "tmux neww ${getExe sessioniser}"
       bind -n M-a display-popup -E -w 75% -h 75% -b rounded "${getExe popup}"
+      bind -n M-j display-popup -E -w 75% -h 75% -b rounded "${getExe lazyjj-popup}"
       bind -T popup M-a detach
+      bind -T popup M-j detach
       # This lets us do scrollback and search within the popup
       bind -T popup C-[ copy-mode
       set-option -g default-shell ${shell}
@@ -34,7 +36,9 @@
       "~/Documents/Projects"
     ];
   };
+
   popup = import ./popup.nix {inherit pkgs;};
+  lazyjj-popup = import ./lazyjj-popup.nix {inherit pkgs lib;};
 
   plugins = with pkgs.tmuxPlugins; [
     vim-tmux-navigator

@@ -28,5 +28,8 @@
     });
 in rec {
   default = daedalus;
-  daedalus = lib.makeOverridable mkTmux {shell = "bash";};
+  daedalus = lib.makeOverridable mkTmux {
+    shell = "bash";
+    targets = [];
+  };
 }

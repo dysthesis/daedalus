@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  targets ? [],
   shell ? "bash",
   fzf ? pkgs.fzf,
   ...
@@ -30,11 +31,7 @@
     '';
 
   sessioniser = import ./sessioniser.nix {
-    inherit lib pkgs fzf;
-    targets = [
-      "~/Documents/University"
-      "~/Documents/Projects"
-    ];
+    inherit lib pkgs fzf targets;
   };
 
   popup = import ./popup.nix {inherit pkgs;};

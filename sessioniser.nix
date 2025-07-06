@@ -3,7 +3,6 @@
   pkgs,
   fzf ? pkgs.fzf,
   zoxide ? pkgs.zoxide,
-  gawk ? pkgs.gawk,
   depth ? 1,
   targets ? [],
   ...
@@ -13,46 +12,46 @@
   inherit (builtins) concatStringsSep;
   directories = concatStringsSep " " targets;
 in
+  builtins.trace directories
   writeShellScriptBin "sessioniser"
   /*
   sh
   */
   ''
     if [ "$#" -eq 1 ]; then
-    	selected=$1
+        selected=$1
     else
-    	selected=$( (
-        ${getExe zoxide} query -l;
+        candidates=$(
+            {
+                for dir in ${directories}; do
+                    ${getExe zoxide} query -ls "$dir" 2>/dev/null
+                done \
+                | awk '{score=$1; $1=""; sub(/^ +/,""); printf "%s\t%s\n",score,$0}'
+            } \
+            | sort -t '	' -k1,1nr -k2,2 -u
+        )
 
-        ${getExe pkgs.fd} \
-          --type directory \
-          --min-depth 0 \
-          --max-depth ${toString depth} \
-          --exclude Archives \
-          . ${directories}
-      ) \
-      | ${getExe gawk} '!seen[$0]++' \
-      | ${fzf}/bin/fzf --tmux center)
+        selected=$(printf '%s\n' "$candidates" \
+            | ${fzf}/bin/fzf                                 \
+                  --tmux center                              \
+                  --delimiter='\t'                           \
+                  --with-nth=2..                             )
     fi
 
-    if [ -z "$selected" ]; then
-    	exit 0
-    fi
+    [ -z "$selected" ] && exit 0
+
+    selected=''${selected#*	}
 
     selected_name=$(basename "$selected" | tr . _)
     tmux_running=$(pgrep tmux)
-
-    if command -v ${getExe zoxide} >/dev/null; then
-        ${getExe zoxide} add "$selected"
-    fi
+    zoxide add "$selected"
 
     if [ -z "$TMUX" ] && [ -z "$tmux_running" ]; then
-    	tmux new-session -s "$selected_name" -c "$selected"
-    	exit 0
+        exec tmux new-session -s "$selected_name" -c "$selected"
     fi
 
     if ! tmux has-session -t="$selected_name" 2>/dev/null; then
-    	tmux new-session -ds "$selected_name" -c "$selected"
+        tmux new-session -ds "$selected_name" -c "$selected"
     fi
 
     tmux switch-client -t "$selected_name"

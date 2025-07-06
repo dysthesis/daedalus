@@ -7,9 +7,10 @@
   mkTmux = {
     shell ? "bash",
     fzf ? pkgs.fzf,
+    targets ? [],
     ...
   }: let
-    config = shell: import ../../config.nix {inherit lib pkgs inputs shell fzf;};
+    config = shell: import ../../config.nix {inherit lib pkgs inputs shell fzf targets;};
   in
     pkgs.tmux.overrideAttrs (prev: {
       buildInputs = (prev.buildInputs or []) ++ [pkgs.makeWrapper];
@@ -30,6 +31,9 @@ in rec {
   default = daedalus;
   daedalus = lib.makeOverridable mkTmux {
     shell = "bash";
-    targets = [];
+    targets = [
+      "~/Documents/Projects/"
+      "~/Documents/University/"
+    ];
   };
 }

@@ -23,10 +23,7 @@ sh
   case "$(detect_repo_type)" in
     jujutsu) target=${lib.getExe pkgs.lazyjj} ;;
     git)     target=${lib.getExe pkgs.lazygit} ;;
-    *)
-      printf >&2 'Not inside a Jujutsu or Git repository.\n'
-      exit 1
-    ;;
+    *)       exit 0 ;;
   esac
 
   if ! tmux has -t "$session" 2>/dev/null; then

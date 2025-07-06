@@ -44,7 +44,6 @@
     yank
   ];
 in
-  builtins.trace plugins
   mkTmuxConfig {
     inherit pkgs plugins extra-config;
   }

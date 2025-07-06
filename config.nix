@@ -19,7 +19,7 @@
     */
     ''
       ${readFile ./tmux.conf}
-      ${readFile ./lackluster.tmux}
+      ${readFile ./theme.tmux}
       bind -n C-f run-shell "tmux neww ${getExe sessioniser}"
       bind -n M-a display-popup -E -w 75% -h 75% -b rounded "${getExe popup}"
       bind -n M-g display-popup -E -w 75% -h 75% -b rounded "${getExe lazyjj-popup}"

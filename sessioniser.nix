@@ -2,9 +2,9 @@
   lib,
   pkgs,
   fzf ? pkgs.fzf,
-  # How deep to search the directories
+  zoxide ? pkgs.zoxide,
+  gawk ? pkgs.gawk,
   depth ? 1,
-  # Where to search in
   targets ? [],
   ...
 }: let
@@ -21,13 +21,18 @@ in
     if [ "$#" -eq 1 ]; then
     	selected=$1
     else
-    	selected=$(${getExe pkgs.fd} \
-    							--type directory \
-    							--min-depth 0 \
-    							--max-depth ${toString depth} \
-    							--exclude Archives \
-    							. ${directories} \
-    							| ${fzf}/bin/fzf --tmux center --header "Sessioniser")
+    	selected=$( (
+        ${getExe zoxide} query -l;
+
+        ${getExe pkgs.fd} \
+          --type directory \
+          --min-depth 0 \
+          --max-depth ${toString depth} \
+          --exclude Archives \
+          . ${directories}
+      ) \
+      | ${getExe gawk} '!seen[$0]++' \
+      | ${fzf}/bin/fzf --tmux center)
     fi
 
     if [ -z "$selected" ]; then
@@ -36,6 +41,10 @@ in
 
     selected_name=$(basename "$selected" | tr . _)
     tmux_running=$(pgrep tmux)
+
+    if command -v ${getExe zoxide} >/dev/null; then
+        ${getExe zoxide} add "$selected"
+    fi
 
     if [ -z "$TMUX" ] && [ -z "$tmux_running" ]; then
     	tmux new-session -s "$selected_name" -c "$selected"

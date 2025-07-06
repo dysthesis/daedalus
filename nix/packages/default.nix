@@ -5,7 +5,7 @@
   ...
 }: let
   mkTmux = {
-    shell ? "bash",
+    shell ? "${lib.getExe pkgs.bash}",
     fzf ? pkgs.fzf,
     targets ? [],
     ...
@@ -30,7 +30,7 @@
 in rec {
   default = daedalus;
   daedalus = lib.makeOverridable mkTmux {
-    shell = "bash";
+    shell = "${lib.getExe pkgs.bash}";
     targets = [
       "~/Documents/Projects/"
       "~/Documents/University/"

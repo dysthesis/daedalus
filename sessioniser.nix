@@ -3,7 +3,6 @@
   pkgs,
   fzf ? pkgs.fzf,
   zoxide ? pkgs.zoxide,
-  depth ? 1,
   targets ? [],
   ...
 }: let
@@ -12,7 +11,6 @@
   inherit (builtins) concatStringsSep;
   directories = concatStringsSep " " targets;
 in
-  builtins.trace directories
   writeShellScriptBin "sessioniser"
   /*
   sh

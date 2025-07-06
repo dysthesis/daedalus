@@ -2,7 +2,8 @@
   pkgs,
   lib,
   targets ? [],
-  shell ? "bash",
+  bash ? pkgs.bash,
+  shell ? "${lib.getExe bash}",
   fzf ? pkgs.fzf,
   ...
 }: let
@@ -19,7 +20,7 @@
     */
     ''
       ${readFile ./tmux.conf}
-      ${readFile ./theme.tmux}
+      run-shell "${lib.getExe bash} ${./theme.tmux}"
       bind -n C-f run-shell "tmux neww ${getExe sessioniser}"
       bind -n M-a display-popup -E -w 75% -h 75% -b rounded "${getExe popup}"
       bind -n M-g display-popup -E -w 75% -h 75% -b rounded "${getExe lazyjj-popup}"
@@ -41,9 +42,9 @@
     vim-tmux-navigator
     sensible
     yank
-    # {plugin = inputs.minimal-tmux.packages.${pkgs.system}.default;}
   ];
 in
+  builtins.trace plugins
   mkTmuxConfig {
     inherit pkgs plugins extra-config;
   }

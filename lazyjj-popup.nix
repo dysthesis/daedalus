@@ -5,7 +5,7 @@
 }: let
   deps = with pkgs; [git-crypt];
 in
-  pkgs.writeShellScriptBin "git-popup.sh"
+  pkgs.writeShellScriptBin "vcs-popup.sh"
   /*
   sh
   */
@@ -24,7 +24,7 @@ in
     }
 
     case "$(detect_repo_type)" in
-      jujutsu) target=${lib.getExe pkgs.lazyjj} ;;
+      jujutsu) target=${lib.getExe pkgs.jjui} ;;
       git)     target=${lib.getExe pkgs.lazygit} ;;
       *)       exit 0 ;;
     esac

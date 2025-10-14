@@ -33,6 +33,7 @@ in
             | ${fzf}/bin/fzf                                 \
                   --tmux center,75%,75%,border-native        \
                   --delimiter='\t'                           \
+                  --prompt='  Select session ❯ '               \
                   --with-nth=2..                             )
     fi
 

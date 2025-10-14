@@ -27,6 +27,7 @@
       bind -n M-n display-popup -E -w 75% -h 75% -b rounded -T "  | Notes " "${getExe notes-popup}"
       bind -T popup M-a detach
       bind -T popup M-g detach
+      bind -T popup M-n detach
       # This lets us do scrollback and search within the popup
       bind -T popup C-[ copy-mode
       set-option -g default-shell ${shell}

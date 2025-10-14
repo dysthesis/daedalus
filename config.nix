@@ -22,8 +22,8 @@
       ${readFile ./tmux.conf}
       run-shell "${lib.getExe bash} ${./theme.tmux}"
       bind -n C-f run-shell "tmux neww ${getExe sessioniser}"
-      bind -n M-a display-popup -E -w 75% -h 75% -b rounded "${getExe popup}"
-      bind -n M-g display-popup -E -w 75% -h 75% -b rounded "${getExe lazyjj-popup}"
+      bind -n M-a display-popup -E -t "" -w 75% -h 75% -b rounded -T "  | Terminal " "${getExe popup}"
+      bind -n M-g display-popup -E -w 75% -h 75% -b rounded -T "  | VCS " "${getExe lazyjj-popup}"
       bind -T popup M-a detach
       bind -T popup M-g detach
       # This lets us do scrollback and search within the popup

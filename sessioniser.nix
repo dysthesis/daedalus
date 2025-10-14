@@ -31,7 +31,7 @@ in
 
         selected=$(printf '%s\n' "$candidates" \
             | ${fzf}/bin/fzf                                 \
-                  --tmux center                              \
+                  --tmux center,75%,75%,border-native        \
                   --delimiter='\t'                           \
                   --with-nth=2..                             )
     fi

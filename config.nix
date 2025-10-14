@@ -24,7 +24,7 @@
       bind -n C-f run-shell "tmux neww ${getExe sessioniser}"
       bind -n M-a display-popup -E -t "" -w 75% -h 75% -b rounded -T "  | Terminal " "${getExe popup}"
       bind -n M-g display-popup -E -w 75% -h 75% -b rounded -T "  | VCS " "${getExe lazyjj-popup}"
-      bind -n M-n display-popup -w 75% -h 75% -b rounded -T "  | Notes " -E "$EDITOR NOTES.md"
+      bind -n M-n display-popup -w 75% -h 75% -b rounded -T "  | Notes " -E "${getExe notes-popup}"
       bind -T popup M-a detach
       bind -T popup M-g detach
       # This lets us do scrollback and search within the popup
@@ -38,6 +38,7 @@
 
   popup = import ./popup.nix {inherit pkgs;};
   lazyjj-popup = import ./lazyjj-popup.nix {inherit pkgs lib;};
+  notes-popup = import ./notes-popup.nix {inherit lib pkgs;};
 
   plugins = with pkgs.tmuxPlugins; [
     vim-tmux-navigator

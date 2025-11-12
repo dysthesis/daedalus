@@ -21,9 +21,31 @@
     ''
       ${readFile ./tmux.conf}
       run-shell "${lib.getExe bash} ${./theme.tmux}"
-      bind -n C-f run-shell "tmux neww ${getExe sessioniser}"
-      bind -n M-a display-popup -E -w 75% -h 75% -b rounded "${getExe popup}"
-      bind -n M-g display-popup -E -w 75% -h 75% -b rounded "${getExe lazyjj-popup}"
+      bind -n C-f \
+        run-shell \
+          "tmux neww ${getExe sessioniser}"
+      bind -n M-a \
+        display-popup \
+          -E \
+          -w 75% \
+          -h 75% \
+          -b rounded \
+          "${getExe popup}"
+      bind -n M-g \
+        display-popup \
+          -E -w 75% \
+          -h 75% \
+          -b rounded \
+          "${getExe lazyjj-popup}"
+      bind-key -T copy-mode-vi o \
+        send-keys \
+          -X copy-pipe \
+          'cd #{pane_current_path}; xargs -I {} echo "echo {}" | bash | xargs open' \; \
+        if -F "#{alternate_on}" { send-keys -X cancel }
+      bind-key -T copy-mode-vi O \
+        send-keys \
+          -X copy-pipe-and-cancel \
+          'tmux send-keys "C-q"; xargs -I {} tmux send-keys "${EDITOR:-vi} {}"; tmux send-keys "C-m"'
       bind -T popup M-a detach
       bind -T popup M-g detach
       # This lets us do scrollback and search within the popup

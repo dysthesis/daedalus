@@ -3,8 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    babel = {
-      url = "github:dysthesis/babel";
+    nixpressions = {
+      url = "github:dysthesis/nixpressions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -22,13 +22,13 @@
 
   outputs = {
     self,
-    babel,
+    nixpressions,
     nixpkgs,
     treefmt-nix,
     ...
   } @ inputs: let
     inherit (builtins) mapAttrs;
-    inherit (babel) mkLib;
+    inherit (nixpressions) mkLib;
     lib = mkLib nixpkgs;
 
     # Systems to support
@@ -38,7 +38,7 @@
       "x86_64-darwin"
       "aarch64-darwin"
     ];
-    forAllSystems = lib.babel.forAllSystems {inherit systems;};
+    forAllSystems = lib.nixpressions.forAllSystems {inherit systems;};
 
     treefmt = forAllSystems (pkgs: treefmt-nix.lib.evalModule pkgs ./nix/formatters);
   in

@@ -1,26 +1,5 @@
 {
   "nodes": {
-    "babel": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "treefmt": "treefmt"
-      },
-      "locked": {
-        "lastModified": 1744448868,
-        "narHash": "sha256-jSE1I0xysn08BAexTW+1N+SGiRnEVcnOX2b/7+xvxWI=",
-        "owner": "dysthesis",
-        "repo": "babel",
-        "rev": "9a13b8a9cb836ad9bac3d6406134037348feb977",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dysthesis",
-        "repo": "babel",
-        "type": "github"
-      }
-    },
     "minimal-tmux": {
       "inputs": {
         "nixpkgs": [
@@ -57,27 +36,48 @@
         "type": "github"
       }
     },
+    "nixpressions": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt": "treefmt"
+      },
+      "locked": {
+        "lastModified": 1764825587,
+        "narHash": "sha256-lJXQsUsKhlkZ4SH1ovKr39A6YCOnwchqPZeRXBKytLo=",
+        "owner": "dysthesis",
+        "repo": "nixpressions",
+        "rev": "82418c95524c5a77ba6578b037bf3ece31b4e8e6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dysthesis",
+        "repo": "nixpressions",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
-        "babel": "babel",
         "minimal-tmux": "minimal-tmux",
         "nixpkgs": "nixpkgs",
+        "nixpressions": "nixpressions",
         "treefmt-nix": "treefmt-nix"
       }
     },
     "treefmt": {
       "inputs": {
         "nixpkgs": [
-          "babel",
+          "nixpressions",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1742370146,
-        "narHash": "sha256-XRE8hL4vKIQyVMDXykFh4ceo3KSpuJF3ts8GKwh5bIU=",
+        "lastModified": 1744961264,
+        "narHash": "sha256-aRmUh0AMwcbdjJHnytg1e5h5ECcaWtIFQa6d9gI85AI=",
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "rev": "adc195eef5da3606891cedf80c0d9ce2d3190808",
+        "rev": "8d404a69efe76146368885110f29a2ca3700bee6",
         "type": "github"
       },
       "original": {

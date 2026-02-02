@@ -1,6 +1,8 @@
 {
   lib,
   pkgs,
+  jjui,
+  lazygit,
   ...
 }: let
   deps = with pkgs; [git-crypt];
@@ -11,7 +13,7 @@ in
   */
   ''
     export PATH=${lib.makeBinPath deps}:$PATH
-    session="_lazyjj_$(tmux display -p '#S')"
+    session="_vcs_$(tmux display -p '#S')"
 
     detect_repo_type() {
       local dir="$PWD"
@@ -24,13 +26,15 @@ in
     }
 
     case "$(detect_repo_type)" in
-      jujutsu) target=${lib.getExe pkgs.jjui} ;;
-      git)     target=${lib.getExe pkgs.lazygit} ;;
+      jujutsu) target=${lib.getExe jjui} ;;
+      git)     target=${lib.getExe lazygit} ;;
       *)       exit 0 ;;
     esac
 
     if ! tmux has -t "$session" 2>/dev/null; then
-      session_id="$(tmux new-session -dP -s "$session" -F '#{session_id}' "$target")"
+      session_id="$(
+        tmux new-session -dP -s "$session" -F '#{session_id}' "$target"
+      )"
       tmux set-option -s -t "$session_id" key-table popup
       tmux set-option -s -t "$session_id" status off
       tmux set-option -s -t "$session_id" prefix None

@@ -7,10 +7,24 @@
   mkTmux = {
     shell ? "${lib.getExe pkgs.bash}",
     fzf ? pkgs.fzf,
+    jjui ? pkgs.jjui,
+    lazygit ? pkgs.lazygit,
     targets ? [],
     ...
   }: let
-    config = shell: import ../../config.nix {inherit lib pkgs inputs shell fzf targets;};
+    config = shell:
+      import ../../config.nix {
+        inherit
+          lib
+          pkgs
+          inputs
+          shell
+          fzf
+          jjui
+          lazygit
+          targets
+          ;
+      };
   in
     pkgs.tmux.overrideAttrs (prev: {
       buildInputs = (prev.buildInputs or []) ++ [pkgs.makeWrapper];

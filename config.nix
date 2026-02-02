@@ -4,7 +4,9 @@
   targets ? [],
   bash ? pkgs.bash,
   shell ? "${lib.getExe bash}",
-  fzf ? pkgs.fzf,
+  fzf,
+  jjui,
+  lazygit,
   ...
 }: let
   inherit (lib.babel.tmux) mkTmuxConfig;
@@ -30,7 +32,7 @@
           -h 75% \
           -b rounded \
           -T "  | VCS " \
-          "${getExe lazyjj-popup}"
+          "${getExe vcs-popup}"
       bind -n M-n \
         display-popup \
           -E -w 75% \
@@ -68,7 +70,7 @@
   };
 
   popup = import ./popup.nix {inherit pkgs;};
-  lazyjj-popup = import ./lazyjj-popup.nix {inherit pkgs lib;};
+  vcs-popup = import ./vcs-popup.nix {inherit pkgs lib jjui lazygit;};
   notes-popup = import ./notes-popup.nix {inherit lib pkgs;};
 
   plugins = with pkgs.tmuxPlugins; [

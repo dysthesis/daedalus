@@ -40,6 +40,9 @@
       setw -g window-status-style "fg=#7788AA,bg=default"
       setw -g window-status-activity-style "fg=#DEEEED,bg=default"
       setw -g window-status-current-style "fg=#FFAA88,bg=default"
+      # Match Rosé Pine lackluster window title layout from theme.tmux
+      setw -g window-status-format "#[fg=#555555]#I  #[fg=#555555]#W"
+      setw -g window-status-current-format "#[fg=#555555] #[fg=#FFFFFF]#W"
       setw -g window-status-separator "  "
       setw -g clock-mode-colour "#eb6f92"
       setw -g mode-style "fg=#FFAA88"

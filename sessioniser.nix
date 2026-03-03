@@ -31,7 +31,7 @@ in
 
         selected=$(printf '%s\n' "$candidates" \
             | ${lib.getExe fzf}                              \
-                  --tmux center,75%,75%,border-native        \
+                  --tmux center,75%,75%                      \
                   --delimiter='\t'                           \
                   --prompt='  Select session ❯ '               \
                   --with-nth=2..                             )

@@ -61,6 +61,13 @@
           -b rounded \
           -T "  | VCS " \
           "${getExe vcs-popup}"
+      bind -n M-b \
+        display-popup \
+          -E -w 75% \
+          -h 75% \
+          -b rounded \
+          -T "  | Git Bug " \
+          "${getExe git-bug-popup}"
       bind -n M-n \
         display-popup \
           -E -w 75% \
@@ -86,6 +93,7 @@
           -X copy-pipe-and-cancel \
           'tmux send-keys "C-q"; xargs -I {} tmux send-keys "${EDITOR:-vi} {}"; tmux send-keys "C-m"'
       bind -T popup M-g detach
+      bind -T popup M-b detach
       bind -T popup M-n detach
       bind -T popup M-t detach
       # This lets us do scrollback and search within the popup
@@ -100,6 +108,7 @@
   popup = import ./popup.nix {inherit pkgs;};
   vcs-popup = import ./vcs-popup.nix {inherit pkgs lib jjui lazygit;};
   notes-popup = import ./notes-popup.nix {inherit lib pkgs;};
+  git-bug-popup = import ./git-bug-popup.nix {inherit lib pkgs;};
 
   # Plugin loading handled manually (and asynchronously) in extra-config to avoid
   # blocking startup, so leave mkTmuxConfig plugins empty.

@@ -9,6 +9,7 @@
     fzf ? pkgs.fzf,
     jjui ? pkgs.jjui,
     lazygit ? pkgs.lazygit,
+    gh-dash ? pkgs.gh-dash,
     targets ? [],
     ...
   }: let
@@ -23,6 +24,7 @@
           jjui
           lazygit
           targets
+          gh-dash
           ;
       };
   in

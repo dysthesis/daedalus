@@ -66,8 +66,8 @@
           -E -w 75% \
           -h 75% \
           -b rounded \
-          -T "  | Git Bug " \
-          "${getExe git-bug-popup}"
+          -T " 󰊤 | GitHub " \
+          "${getExe gh-dash-popup}"
       bind -n M-n \
         display-popup \
           -E -w 75% \
@@ -108,7 +108,7 @@
   popup = import ./popup.nix {inherit pkgs;};
   vcs-popup = import ./vcs-popup.nix {inherit pkgs lib jjui lazygit;};
   notes-popup = import ./notes-popup.nix {inherit lib pkgs;};
-  git-bug-popup = import ./git-bug-popup.nix {inherit lib pkgs;};
+  gh-dash-popup = import ./gh-popup.nix {inherit lib pkgs;};
 
   # Plugin loading handled manually (and asynchronously) in extra-config to avoid
   # blocking startup, so leave mkTmuxConfig plugins empty.

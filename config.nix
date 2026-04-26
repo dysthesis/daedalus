@@ -108,7 +108,7 @@
   popup = import ./popup.nix {inherit pkgs;};
   vcs-popup = import ./vcs-popup.nix {inherit pkgs lib jjui lazygit;};
   notes-popup = import ./notes-popup.nix {inherit lib pkgs;};
-  gh-dash-popup = import ./gh-popup.nix {inherit lib pkgs;};
+  gh-dash-popup = pkgs.callPackage ./gh-popup.nix {inherit lib pkgs;};
 
   # Plugin loading handled manually (and asynchronously) in extra-config to avoid
   # blocking startup, so leave mkTmuxConfig plugins empty.

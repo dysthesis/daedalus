@@ -84,15 +84,6 @@
           -b rounded \
           -T "  | Terminal " \
           "${getExe popup}"
-      bind-key -T copy-mode-vi o \
-        send-keys \
-          -X copy-pipe \
-          'cd #{pane_current_path}; xargs -I {} echo "echo {}" | bash | xargs open' \; \
-        if -F "#{alternate_on}" { send-keys -X cancel }
-      bind-key -T copy-mode-vi O \
-        send-keys \
-          -X copy-pipe-and-cancel \
-          'tmux send-keys "C-q"; xargs -I {} tmux send-keys "${EDITOR:-vi} {}"; tmux send-keys "C-m"'
       bind -T popup M-g detach
       bind -T popup M-b detach
       bind -T popup M-n detach
